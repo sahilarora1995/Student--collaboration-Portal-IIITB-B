@@ -19,7 +19,26 @@ class FilewithId(APIView):
         serializer = FileSerializer(File)
         return Response(serializer.data)
 
-class FileWithConditions(APIView):
+class getData(APIView):
+    def post(self, request, *args, **kwargs):
+
+        allFiles = File.objects.all()
+
+        for key in request.data.keys():
+            value = request.data.get(key)
+            if (key == 'resourceType'):
+                allFiles = allFiles.filter(resourceType=value)
+            elif (key == 'semester'):
+                allFiles = allFiles.filter(semester=value)
+            elif (key == 'subject'):
+                allFiles = allFiles.filter(subject=value)
+            elif (key == 'year'):
+                allFiles = allFiles.filter(year=value)
+        
+        serializer = FileSerializer(allFiles, many=True)
+        return Response(serializer.data)
+
+'''class FileWithConditions(APIView):
     def get(self, request, resourceType, semester, subject, year):
         print(resourceType, semester, subject, year)
         allFiles = File.objects.all()
@@ -35,7 +54,7 @@ class FileWithConditions(APIView):
 
         serializer = FileSerializer(allFiles, many=True)
         return Response(serializer.data)
-
+'''
 class FileUploadView(APIView):
     parser_class = (FileUploadParser,)
 
