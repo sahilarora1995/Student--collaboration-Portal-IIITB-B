@@ -20,7 +20,7 @@ class FilewithId(APIView):
         return Response(serializer.data)
 
 class getData(APIView):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
         allFiles = File.objects.all()
 
@@ -34,6 +34,8 @@ class getData(APIView):
                 allFiles = allFiles.filter(subject=value)
             elif (key == 'year'):
                 allFiles = allFiles.filter(year=value)
+            elif (key == 'id'):
+                allFiles = allFiles.filter(id=value)
         
         serializer = FileSerializer(allFiles, many=True)
         return Response(serializer.data)
