@@ -21,10 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('upload/', include('SCPapp.urls')),
-    path(r'getdata/<int:id>/', views.FilewithId.as_view()),
-    #path(r'getWithConditions/<str:resourceType>/<int:semester>/<str:subject>/<int:year>', views.FileWithConditions.as_view()),
-    path('getAllData/', views.getData.as_view())
+    path('getData/', views.getData.as_view()),
+    path('postData/', views.postData.as_view())
 ]
 
 
