@@ -54,3 +54,11 @@ class postData(APIView):
             
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+def deleteData(request, id):
+    try:
+        field = File.objects.get(id = id)
+    except File.DoesNotExist:
+        return redirect('/getData')
+    field.delete()
+    return redirect('/getData')
