@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('getData/', views.getData.as_view()),
-    path('postData/', views.postData.as_view())
+    path('postData/', views.postData.as_view()),
+    path('patchData/<int:id>/', views.patchData.as_view())
 ]
 
 
