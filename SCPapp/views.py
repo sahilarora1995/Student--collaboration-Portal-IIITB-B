@@ -11,8 +11,9 @@ class getData(APIView):
 
     def get(self, request, *args, **kwargs):
         allFiles = File.objects.all()
-        for key in request.data.keys():
-            value = request.data.get(key)
+
+        for key in request.GET.keys():
+            value = request.GET.get(key)
             if (key == 'resourceType'):
                 allFiles = allFiles.filter(resourceType=value)
             elif (key == 'semester'):
@@ -26,6 +27,21 @@ class getData(APIView):
         
         serializer = FileSerializer(allFiles, many=True)
         return Response(serializer.data)
+
+class patchData(APIView):
+    def get_object(self, id):
+        try:
+            return File.objects.get(id=id)
+        except File.DoesNotExist:
+            raise Http404
+
+    def patch(self, request, id):
+        File = self.get_object(id)
+        serializer = FileSerializer(File, data=request.data,
+                                         partial=True)  # set partial=True to update a data partially
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class postData(APIView):
 
