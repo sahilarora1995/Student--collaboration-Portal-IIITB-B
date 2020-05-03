@@ -11,5 +11,17 @@ class File(models.Model):
     numberofUpvotes = models.IntegerField(default=0)
     numberofDownvotes = models.IntegerField(default=0)
 
+class Interview(models.Model):
+    name = models.CharField(max_length=101)
+    title = models.CharField(max_length=101)
+    yearPlaced = models.IntegerField()
+    experience = models.CharField(max_length=2000, blank=True, null=True)
+    yearPassout = models.IntegerField()
+    numberofUpvotes = models.IntegerField(default=0)
+
+
     def __str__(self):
         return self.file.name
+
+    def __str__(self):
+        return self.name
