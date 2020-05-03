@@ -24,7 +24,7 @@ urlpatterns = [
     path('getData/', views.getData.as_view()),
     path('postData/', views.postData.as_view()),
     path('patchData/<int:id>/', views.patchData.as_view()),
-    #path('interviewData/<int:id>/', views.interviewDataId.as_view()),
+    path('interviewData/<int:id>/', views.interviewDataId.as_view()),
     path('interviewData/', views.interviewData.as_view()),
 
 ]

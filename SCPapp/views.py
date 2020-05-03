@@ -20,6 +20,29 @@ class interviewData(APIView):
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class interviewDataId(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    def get_object(self, id):
+        try:
+            return Interview.objects.get(id=id)
+        except product.DoesNotExist:
+            raise Http404
+
+    def get(self, request, id, format=None):
+        product = self.get_object(id)
+        serializer = interviewSerializer(product)
+        return Response(serializer.data)
+    def patch(self, request, id):
+        File = self.get_object(id)
+        serializer = interviewSerializer(File, data=request.data,
+                                         partial=True)  # set partial=True to update a data partially
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 class getData(APIView):
 
 
