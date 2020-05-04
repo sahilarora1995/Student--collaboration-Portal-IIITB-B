@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from SCPapp import views
+from videoModule import views as videoModuleViews
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -24,7 +25,11 @@ urlpatterns = [
     path('getData/', views.getData.as_view()),
     path('postData/', views.postData.as_view()),
     path('deleteData/<id>', views.deleteData),
-    path('patchData/<int:id>/', views.patchData.as_view())
+    path('patchData/<int:id>/', views.patchData.as_view()),
+    path('videos/getData/', videoModuleViews.getData.as_view()),
+    path('videos/postData/', videoModuleViews.postData.as_view()),
+    path('videos/updateData/<int:id>', videoModuleViews.updateData.as_view()),
+    path('videos/comments/<int:id>', videoModuleViews.getPostComments.as_view()),
 ]
 
 
