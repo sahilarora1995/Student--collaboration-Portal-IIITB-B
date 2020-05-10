@@ -25,7 +25,7 @@ SECRET_KEY = '_j3#yab9cp8^-r#!il_z!rwf#^$vq=7st75eq17gd=fjwph4zp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 MEDIA_URL =  '/media/'
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'SCPapp',
-    'MockSchedularApp'
+    'MockSchedularApp',
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
