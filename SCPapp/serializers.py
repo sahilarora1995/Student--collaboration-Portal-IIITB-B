@@ -14,4 +14,3 @@ class interviewSerializer(serializers.ModelSerializer):
 class loginSerializer(serializers.ModelSerializer):
     class Meta:
         model = Login
-        fields = "__all__"
