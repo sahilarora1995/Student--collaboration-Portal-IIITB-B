@@ -26,7 +26,8 @@ urlpatterns = [
     path('patchData/<int:id>/', views.patchData.as_view()),
     path('interviewData/<int:id>/', views.interviewDataId.as_view()),
     path('interviewData/', views.interviewData.as_view()),
-
+    path('loginData/<str:rollNumber>/', views.loginDataId.as_view()),
+    path('loginData/', views.loginData.as_view()),
 ]
 
 

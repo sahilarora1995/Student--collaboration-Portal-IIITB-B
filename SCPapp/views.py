@@ -2,9 +2,47 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .models import File,Interview
+from .models import File,Interview, Login
+from .serializers import FileSerializer, interviewSerializer, loginSerializer
 
-from .serializers import FileSerializer, interviewSerializer
+
+class loginData(APIView):
+    def get(self, request):
+        login = Login.objects.all()
+        serializer = loginSerializer(login, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        login_serializer = loginSerializer(data=request.data)
+        if login_serializer.is_valid():
+            login_serializer.save()
+            return Response(login_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(login_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class loginDataId(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    def get_object(self, rollNumber):
+        try:
+            return Login.objects.get(rollNumber=rollNumber)
+        except Login.DoesNotExist:
+            raise Http404
+
+    def get(self, request, rollNumber, format=None):
+        Login = self.get_object(rollNumber)
+        serializer = loginSerializer(Login)
+        return Response(serializer.data)
+
+    def patch(self, request, rollNumber):
+        Login = self.get_object(rollNumber)
+        serializer = loginSerializer(Login, data=request.data,
+                                         partial=True)  # set partial=True to update a data partially
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class interviewData(APIView):
     def get(self, request):
