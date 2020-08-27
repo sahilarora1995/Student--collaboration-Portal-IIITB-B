@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -10,7 +10,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
-
+#connecting to Google
+from googleapiclient.discovery import build
+from httplib2 import Http
+from oauth2client import file, client, tools
+import json
+import os
 
 @api_view(['GET', 'POST'])
 def students_list(request):
@@ -56,10 +61,41 @@ def students_detail(request, pk):
 
 @api_view(['POST'])
 def sendmail(request, pk):
-    
+    SCOPES = 'https://www.googleapis.com/auth/calendar'
+    a = os.path.dirname(__file__)
+    store = file.Storage(a + '/storage.json')
+    print(store)
+    creds = store.get()
+    flags = tools.argparser.parse_args([])
+    if not creds or creds.invalid:
+        #data = open(a+'/client_secrets.json', 'rb')
+        #print(data)
+        flow = client.flow_from_clientsecrets(a+'/client_secrets.json', SCOPES)
+        creds = tools.run_flow(flow, store,flags)
+    GCAL = build('calendar', 'v3', http=creds.authorize(Http()))
+
+    GMT_OFF = '+05:30'      # PDT/MST/GMT-7
+    EVENT = {
+        'summary': 'Mock Interview - IIITB',
+        'start':  {'dateTime': request.data["date"] + 'T' + request.data["time"] + '%s' % GMT_OFF},
+        'end':    {'dateTime': request.data["date"] + 'T' + request.data["time"] + '%s' % GMT_OFF},
+        'attendees': [
+            {'email': request.data["email"]},
+            {'email': request.data["email1"]},
+        ],
+    }
+
+    e = GCAL.events().insert(calendarId='primary',
+            sendNotifications=True, body=EVENT).execute()
+    print('''*** %r event added:
+    Start: %s
+    End:   %s''' % (e['summary'].encode('utf-8'),
+        e['start']['dateTime'], e['end']['dateTime']))
+    '''
     subject = 'MockInterviewIIITB'
     message = 'Congratulations! ' + '\n' + request.data["name"] + ' and ' + request.data["name1"] + ' have MockInterview' + ' at ' + request.data["time"] + ', ' + request.data["date"] + " on " + request.data["topic"] + '\nthis is your link ' + 'https://hangouts.google.com/call/ftwkBvHA27fM028mYImMAAEM' 
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [request.data["email"],request.data["email1"],]
     send_mail( subject, message, email_from, recipient_list )
+    '''
     return Response(status=status.HTTP_201_CREATED)

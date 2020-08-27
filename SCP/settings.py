@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import logging.config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'SCPapp',
     'MockSchedularApp',
+    'storages',
+    'VideoModule'
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
@@ -81,6 +83,19 @@ WSGI_APPLICATION = 'SCP.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'demo_1',
+#        'USER': 'sahil',
+#        'PASSWORD': 'admin123sS$',
+#        'HOST':'database-1.cuiqvd5rsvj1.us-east-2.rds.amazonaws.com',
+#        'PORT': '5432'
+#    }
+#}
+
+SESSION_COOKIE_SECURE = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -113,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE='UTC'
 
 USE_I18N = True
 
@@ -133,3 +148,18 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'scp.iiitb@gmail.com'
 EMAIL_HOST_PASSWORD = 'thangu@SCP'
+
+
+
+#AWS_ACCESS_KEY_ID = 'AKIAWHGXZOKBG2XA4IXE'
+#AWS_SECRET_ACCESS_KEY = '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'
+#AWS_STORAGE_BUCKET_NAME = 'noaccess1995'
+#AWS_S3_FILE_OVERWRITE = False
+#AWS_DEFAULT_ACL = None
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#AWS_S3_REGION_NAME = 'us-east-2' #change to your region
+#AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+
+#CSRF_COOKIE_SECURE = True

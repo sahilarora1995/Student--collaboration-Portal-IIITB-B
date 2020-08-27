@@ -1,0 +1,32 @@
+2020-08-25 13:21:12,648 INFO     [views.py:20] Trying to get User Login Data....
+2020-08-25 13:21:12,651 INFO     [views.py:23] Successfully got the User Login Data  201
+2020-08-25 13:21:33,527 INFO     [views.py:135] Trying: GET: PYQ Data
+2020-08-25 13:21:33,528 INFO     [views.py:152] Successful: GET: PYQ Data
+2020-08-25 13:22:45,826 INFO     [views.py:43] Trying: GET: User data by rollNumber MT2019120
+2020-08-25 13:22:45,831 INFO     [views.py:53] Successful: GET: User data by rollNumber MT2019120
+2020-08-25 13:22:54,759 INFO     [views.py:135] Trying: GET: PYQ Data
+2020-08-25 13:22:54,759 INFO     [views.py:152] Successful: GET: PYQ Data
+2020-08-25 13:22:57,71 INFO     [views.py:157] Trying: GET: PYQ by id 2
+2020-08-25 13:22:57,367 INFO     [views.py:176] Successful: GET: PYQ by id 2
+2020-08-25 13:22:57,446 INFO     [views.py:208] Trying: GET: Comments for PYQ by id 2
+2020-08-25 13:22:57,448 INFO     [views.py:212] Successful: GET: Comments for PYQ by id 2
+2020-08-25 13:23:03,449 INFO     [views.py:68] Trying: GET: Interview Exp Data
+2020-08-25 13:23:03,450 INFO     [views.py:71] Successful: GET: Interview Exp Data
+2020-08-25 13:23:07,443 INFO     [views.py:68] Trying: GET: Interview Exp Data
+2020-08-25 13:23:07,443 INFO     [views.py:71] Successful: GET: Interview Exp Data
+2020-08-25 13:23:22,964 INFO     [views.py:135] Trying: GET: PYQ Data
+2020-08-25 13:23:22,964 INFO     [views.py:152] Successful: GET: PYQ Data
+2020-08-25 13:23:24,665 INFO     [views.py:157] Trying: GET: PYQ by id 2
+2020-08-25 13:23:24,669 INFO     [views.py:176] Successful: GET: PYQ by id 2
+2020-08-25 13:23:24,749 INFO     [views.py:208] Trying: GET: Comments for PYQ by id 2
+2020-08-25 13:23:24,750 INFO     [views.py:212] Successful: GET: Comments for PYQ by id 2
+2020-08-25 13:23:28,823 INFO     [views.py:216] Trying: POST: Comments for PYQ by id 2
+2020-08-25 13:23:30,490 INFO     [views.py:221] Successful: POST: Comments for PYQ by id 2, status 201
+2020-08-25 13:23:30,498 INFO     [views.py:208] Trying: GET: Comments for PYQ by id 2
+2020-08-25 13:23:30,499 INFO     [views.py:212] Successful: GET: Comments for PYQ by id 2
+2020-08-25 13:24:06,600 INFO     [views.py:43] Trying: GET: User data by rollNumber MT2019114
+2020-08-25 13:24:06,604 INFO     [views.py:53] Successful: GET: User data by rollNumber MT2019114
+2020-08-25 13:25:48,843 INFO     [views.py:43] Trying: GET: User data by rollNumber MT2019120
+2020-08-25 13:25:48,851 INFO     [views.py:53] Successful: GET: User data by rollNumber MT2019120
+2020-08-25 13:26:40,164 INFO     [views.py:135] Trying: GET: PYQ Data
+2020-08-25 13:26:40,166 INFO     [views.py:152] Successful: GET: PYQ Data

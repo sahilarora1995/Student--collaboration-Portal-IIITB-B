@@ -14,27 +14,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-<<<<<<< HEAD
-from django.urls import path, include
-from django.conf import settings
-=======
+from django.views.decorators.csrf import csrf_exempt
+
+
 from django.urls import path, include, re_path
 from django.conf import settings
 from SCPapp import views as s
 from MockSchedularApp import views as m
 from SCPapp import views
 from django.conf.urls.static import static
+from VideoModule import views as VideoModuleViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('getData/', views.getData.as_view()),
-    path('postData/', views.postData.as_view()),
-    path('patchData/<int:id>/', views.patchData.as_view()),
-    path('deleteData/<id>', views.deleteData),
-    path('interviewData/<int:id>/', views.interviewDataId.as_view()),
-    path('interviewData/', views.interviewData.as_view()),
-    path('loginData/<str:rollNumber>/', views.loginDataId.as_view()),
-    path('loginData/', views.loginData.as_view()),
+    path('getData/', views.getData.as_view(), name="getData"),
+    path('getData/<int:id>/', views.patchData.as_view(), name="getDataId"),
+    path('postData/', views.postData.as_view(), name="postData"),
+    path('patchData/<int:id>/', views.patchData.as_view(), name="patchData"),
+    path('pyq/comments/<int:id>/', views.getPostCommentsPYQ.as_view(), name="pyqComments"),
+    path('deleteData/<id>/', csrf_exempt(views.deleteData.as_view()), name="deleteData"),
+    path('interviewData/<int:id>/', views.interviewDataId.as_view(), name="interviewDataId"),
+    path('interviewData/', views.interviewData.as_view(), name="interviewData"),
+    path('exp/comments/<int:id>/', views.getPostCommentsExp.as_view(), name="expCommentsId"),
+    
+    path('loginData/<str:rollNumber>/', views.loginDataId.as_view(), name="loginDataRoll"),
+    path('loginData/', views.loginData.as_view(), name="loginData"),
+    
+    path('getVideoData/', VideoModuleViews.getData.as_view(), name="getVideoData"),
+    path('getVideoData/<int:id>/', VideoModuleViews.getDataById.as_view(), name="getVideoDataId"),
+    path('postVideoData/', VideoModuleViews.postData.as_view(), name="postVideoData"),
+    path('deleteVideoData/<int:id>/', csrf_exempt(VideoModuleViews.deleteData.as_view()), name="deleteVideoData"),
+    path('updateVideoData/<int:id>/', VideoModuleViews.updateData.as_view(), name="updateVideoData"),
+    path('commentsOnVideo/<int:id>/', VideoModuleViews.getPostComments.as_view(), name="commentsOnVideo"),
+
     re_path(r'^api/students/$', m.students_list),
     re_path(r'^api/students/([0-9]+)$', m.students_detail),
     re_path(r'^api/students/sendmail/([0-9]+)$', m.sendmail),
