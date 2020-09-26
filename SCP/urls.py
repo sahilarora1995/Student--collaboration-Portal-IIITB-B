@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import views as auth_views
 
 
 from django.urls import path, include, re_path
@@ -50,6 +51,16 @@ urlpatterns = [
     re_path(r'^api/students/$', m.students_list),
     re_path(r'^api/students/([0-9]+)$', m.students_detail),
     re_path(r'^api/students/sendmail/([0-9]+)$', m.sendmail),
+
+    path('reset_password/', auth_views.PasswordResetView.as_view(), name="reset_password"),
+    path('reset_password_set/', auth_views.PasswordResetDoneView.as_view(),name="password_reset_done"),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),name="password_reset_confirm"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete"),
+
+    path('confirmEmailID/', views.confirmEmailID.as_view(), name="confirmEmailID"),
+    path('confirmEmailID/<int:otp>/', views.confirmEmailID.as_view(), name="confirmEmailID"),
+    path('verifyEmailID/', views.verifyEmailID.as_view(), name="verifyEmailID"),
+
 ]
 
 

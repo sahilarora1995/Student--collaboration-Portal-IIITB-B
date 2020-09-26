@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from . models import File,Interview,Login,CommentsPYQ,CommentsExp
+from .models import File, Interview, Login, CommentsPYQ, CommentsExp, emailVerify
+
+
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
@@ -8,6 +10,11 @@ class FileSerializer(serializers.ModelSerializer):
 class interviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Interview
+        fields = "__all__"
+
+class emailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = emailVerify
         fields = "__all__"
 
 

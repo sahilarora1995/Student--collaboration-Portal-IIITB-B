@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'SCP.wsgi.application'
 #    }
 #}
 
-SESSION_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
 
 DATABASES = {
     'default': {
@@ -143,13 +143,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'scp.iiitb@gmail.com'
-EMAIL_HOST_PASSWORD = 'thangu@SCP'
-
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'iiitbemailverify@gmail.com'
+EMAIL_HOST_PASSWORD = 'admin123ssss'
 
 
 #AWS_ACCESS_KEY_ID = 'AKIAWHGXZOKBG2XA4IXE'
